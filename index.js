@@ -73,7 +73,7 @@ const questions = [
     },
     {
         type: 'checkbox',
-        name: 'license',
+        name: 'licenses',
         message: 'Please select a license',
         choices: ['ISC', 'MIT', 'Mozilla', ]
     }
@@ -82,7 +82,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./readme.md', fileContent, err => {
+        fs.writeFile('./readme.md', data, err => {
             if (err) {
                 reject (err);
                 return;
@@ -98,9 +98,20 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((data) => {
-        console.log(data);
+
+    inquirer.prompt(questions)
+    .then(data => {
+        return generateMarkdown(data);
     })
+    .then(fileMarkdown => {
+        return writeToFile(fileMarkdown)
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 }
 // Function call to initialize app
 init();

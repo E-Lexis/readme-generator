@@ -1,11 +1,11 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if (!data.license) {
+  if (!data.licenses) {
     return '';
   }
 
-  if (data.license == a) {
+  if (data.licenses) {
     return``;
   }
 }
@@ -13,11 +13,11 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (!data.license) {
+  if (!data.licenses) {
     return '';
   }
 
-  if (data.license == a) {
+  if (data.licenses) {
     return``;
   }
 }
@@ -25,9 +25,13 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  return `## Licences
-            ${renderLicenseBadge}
-            ${renderLicenseLink}
+  if (!data.license) {
+    return '';
+  }
+  
+  return `## Licenses
+            ${renderLicenseBadge(data.license)}
+            ${renderLicenseLink(data.license)}
   `
 }
 
@@ -57,7 +61,9 @@ function generateMarkdown(data) {
 
           Find me on [Github](https://github.com/${data.github} "Github")
 
-          You can also reach out via [email](${data.email}) for any additional questions.
+          You can also reach out via [email](${data.email} "Email") for any additional questions.
+
+          ${renderLicenseSection(data.license)};
 `;
 
 }
