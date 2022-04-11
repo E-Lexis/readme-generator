@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 var inquirer = require('inquirer');
+const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
@@ -33,7 +34,15 @@ const questions = [
     {
         type: 'input',
         name: 'install',
-        message: "Please provide your project's installation instructions. (Required)"
+        message: "Please provide your project's installation instructions. (Required)",
+        validate: installInput => {
+            if (installInput) {
+                return true;
+            } else {
+                console.log('Please provide installation instructions.');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
@@ -74,15 +83,15 @@ const questions = [
     {
         type: 'checkbox',
         name: 'licenses',
-        message: 'Please select a license',
-        choices: ['ISC', 'MIT', 'Mozilla', ]
+        message: 'Please select any licenses that pertain to your project',
+        choices: ['Apache', 'ISC', 'MIT', 'Mozilla']
     }
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./readme.md', data, err => {
+        fs.writeFile(`./dist/${fileName}.md`, data, err => {
             if (err) {
                 reject (err);
                 return;
@@ -90,7 +99,7 @@ function writeToFile(fileName, data) {
 
             resolve ({
                 ok: true,
-                message: 'File created!'
+                message: 'File created in distrubtion folder!'
             });
         });
     });
@@ -104,10 +113,10 @@ function init() {
         return generateMarkdown(data);
     })
     .then(fileMarkdown => {
-        return writeToFile(fileMarkdown)
+        return writeToFile('README',fileMarkdown)
     })
-    .then(writeFileResponse => {
-        console.log(writeFileResponse);
+    .then(writeToFileResponse => {
+        console.log(writeToFileResponse);
     })
     .catch(err => {
         console.log(err);
