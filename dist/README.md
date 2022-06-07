@@ -20,11 +20,11 @@ Test installation
           
 ## Usage
 
-Test usage
+Test usage information
 
 ## Contributions
 
-undefined
+Test contriution information
 
 ## Testing
 
