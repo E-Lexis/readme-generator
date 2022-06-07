@@ -46,6 +46,11 @@ const questions = [
     },
     {
         type: 'input',
+        name: 'usage',
+        message: 'Please provide usage information.'
+    },
+    {
+        type: 'input',
         name: 'contribution',
         message: 'Please provide contribution information.'
     },
@@ -82,7 +87,7 @@ const questions = [
     },
     {
         type: 'checkbox',
-        name: 'licenses',
+        name: 'license',
         message: 'Please select any licenses that pertain to your project',
         choices: ['Apache', 'ISC', 'MIT', 'Mozilla']
     }

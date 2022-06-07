@@ -7,13 +7,16 @@ function renderLicenseBadge(license) {
     return '';
   }
 
-  if (license ==  'Apache') {
+  if (license.includes('Apache')  ) {
     userLicense += '![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)';
-  } if (license ==  'ISC') {
+  } 
+  if (license.includes('ISC')) {
     userLicense += '![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)';
-  } if (license ==  'MIT') {
+  } 
+  if (license.includes('MIT')) {
     userLicense += '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)';
-  } if (license ==  'Mozilla') {
+  } 
+  if (license.includes('Mozilla')) {
     userLicense += '![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)';
   }
   return `${userLicense}`;
@@ -28,13 +31,16 @@ function renderLicenseLink(license) {
     return '';
   }
 
-  if (license ==  'Apache') {
+  if (license.includes('Apache')) {
     userLicenseBadge += '(https://opensource.org/licenses/Apache-2.0)';
-  } if (license ==  'ISC') {
+  } 
+  if (license.includes('ISC')) {
     userLicenseBadge += '(https://opensource.org/licenses/ISC)';
-  } if (license ==  'MIT') {
+  } 
+  if (license.includes('MIT')) {
     userLicenseBadge += '(https://opensource.org/licenses/MIT)';
-  } if (license ==  'Mozilla') {
+  } 
+  if (license.includes('Mozilla')) {
     userLicenseBadge += '(https://opensource.org/licenses/MPL-2.0)';
   }
   return `${userLicenseBadge}`
@@ -56,43 +62,43 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   return `# ${data.title}
 
-            ${renderLicenseSection(data.licenses)}
+ ${renderLicenseSection(data.licenses)}
 
-          ## Table of Contents 
-          - [Description](#description)
-          - [Installation](#installation)
-          - [Usage](#usage)
-          - [Contributions](#contributions)
-          - [Testing](#testing)
-          - [Questions](#questions)
-
-          ## Description
+## Table of Contents 
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributions](#contributions)
+- [Testing](#testing)
+- [Questions](#questions)
           
-          ${data.description}
-
-          ## Installation
-
-          ${data.installation}
+## Description
           
-          ## Usage
+${data.description}
+          
+## Installation
 
-          ${data.usage}
+${data.install}
+          
+## Usage
 
-          ## Contributions
+${data.usage}
 
-          ${data.contributions}
+## Contributions
 
-          ## Testing
+${data.contributions}
 
-          ${data.test}
+## Testing
 
-          ## Questions
+${data.test}
 
-          Find me on [Github](https://github.com/${data.github} "Github")
+## Questions
 
-          You can also reach out via [email](${data.email} "Email") for any additional questions.
+Find me on [Github](https://github.com/${data.github} "Github")
 
-         
+You can also reach out via [email](${data.email} "Email") for any additional questions.
+
+
 `;
 
 }
